@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="13771" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0rr-x4-M1g">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="13756"/>
+    </dependencies>
+    <scenes>
+        <!--TitleIC-->
+        <scene sceneID="jaD-LJ-ewa">
+            <objects>
+                <controller id="0rr-x4-M1g" customClass="TitleIC" customModule="MinuteChallengeGame" customModuleProvider="target">
+                    <items>
+                        <imageView height="109" alignment="left" image="MinuteChallengeLogo-Black" contentMode="scaleAspectFit" id="cqy-Od-KsZ"/>
+                        <button width="1" alignment="left" verticalAlignment="center" title="Play" id="hPN-6V-27h">
+                            <connections>
+                                <segue destination="AgC-eL-Hgc" kind="push" id="8pJ-0W-yYs"/>
+                            </connections>
+                        </button>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="-274" y="31"/>
+        </scene>
+        <!--Back-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller title="Back" id="AgC-eL-Hgc" customClass="GameIC" customModule="MinuteChallengeGame" customModuleProvider="target">
+                    <items>
+                        <spriteKitScene alignment="left" id="ARY-87-yzO">
+                            <gestureRecognizers>
+                                <swipeGestureRecognizer id="LxA-Bo-s3I" userLabel="Swipe Right">
+                                    <connections>
+                                        <action selector="swipeRightDetected:" destination="AgC-eL-Hgc" id="bzk-RS-27G"/>
+                                    </connections>
+                                </swipeGestureRecognizer>
+                                <swipeGestureRecognizer direction="2" id="Ja5-3b-hT2" userLabel="Swipe Left">
+                                    <connections>
+                                        <action selector="swipeLeftDetected:" destination="AgC-eL-Hgc" id="A0r-LL-UQc"/>
+                                    </connections>
+                                </swipeGestureRecognizer>
+                                <swipeGestureRecognizer direction="4" id="SCi-28-yCN" userLabel="Swipe Up">
+                                    <connections>
+                                        <action selector="swipeUpDetected:" destination="AgC-eL-Hgc" id="YQt-bN-TwF"/>
+                                    </connections>
+                                </swipeGestureRecognizer>
+                                <swipeGestureRecognizer direction="8" id="6x9-6P-Uue" userLabel="Swipe Down">
+                                    <connections>
+                                        <action selector="swipeDownDetected:" destination="AgC-eL-Hgc" id="rI1-wE-oa7"/>
+                                    </connections>
+                                </swipeGestureRecognizer>
+                                <tapGestureRecognizer id="hUE-Pn-4DA" userLabel="Tap">
+                                    <connections>
+                                        <action selector="tapDetected:" destination="AgC-eL-Hgc" id="eJe-bA-q9d"/>
+                                    </connections>
+                                </tapGestureRecognizer>
+                            </gestureRecognizers>
+                        </spriteKitScene>
+                    </items>
+                    <connections>
+                        <outlet property="skInterface" destination="ARY-87-yzO" id="U6w-Od-uXj"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="27" y="31"/>
+        </scene>
+    </scenes>
+</document>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina3_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Minute_Challenge" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MinuteChallengeLogo-Blue" translatesAutoresizingMaskIntoConstraints="NO" id="EnL-p5-FeY">
+                                <rect key="frame" x="40" y="60" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="Rwr-SG-XpU"/>
+                                    <constraint firstAttribute="width" constant="240" id="VnG-xb-8Yg"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please start the game from your Apple Watch. ⌚️" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="grZ-Ry-VaC">
+                                <rect key="frame" x="10" y="198" width="300" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdK-oH-ZuN">
+                                <rect key="frame" x="16" y="235" width="288" height="225"/>
+                                <string key="text">Instructions:
+If you haven’t already, install the game via the Watch app on your iPhone.
+
+When the game starts, one of three commands will appear on your Apple Watch:
+
+If you see “tap”, tap anywhere on the screen.
+
+If you see “swipe”, swipe in any direction on the screen.
+
+If you see “turn”, rotate the Digital Crown in either direction.
+
+Keep up and you win!
+
+Version 1.0</string>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.31936776639999997" green="0.58904421330000001" blue="0.83626204729999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hdK-oH-ZuN" secondAttribute="trailing" constant="16" id="8Z9-3M-jXQ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="grZ-Ry-VaC" secondAttribute="trailing" constant="10" id="8bU-Qz-UNe"/>
+                            <constraint firstItem="grZ-Ry-VaC" firstAttribute="top" secondItem="EnL-p5-FeY" secondAttribute="bottom" constant="10" id="AKT-Gb-7dj"/>
+                            <constraint firstItem="hdK-oH-ZuN" firstAttribute="top" secondItem="grZ-Ry-VaC" secondAttribute="bottom" constant="16" id="B6t-Vt-P1Z"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="EnL-p5-FeY" secondAttribute="trailing" constant="40" id="Qpd-Cl-Z0C"/>
+                            <constraint firstItem="EnL-p5-FeY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="YqV-pE-WSr"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="hdK-oH-ZuN" secondAttribute="bottom" constant="20" id="fx6-eT-qGM"/>
+                            <constraint firstItem="EnL-p5-FeY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="jf6-Cd-cXb"/>
+                            <constraint firstItem="hdK-oH-ZuN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="tFd-LW-BWb"/>
+                            <constraint firstItem="grZ-Ry-VaC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="vRu-bN-ooL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="instructionsLabel" destination="grZ-Ry-VaC" id="NK3-kM-w97"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="116.25" y="110"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="MinuteChallengeLogo-Blue" width="800" height="800"/>
+    </resources>
+</document>
