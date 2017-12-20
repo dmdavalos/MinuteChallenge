@@ -11,16 +11,21 @@ import WatchKit
 
 class GameScene: SKScene {
     
+    // MARK: Variables
     var label: SKLabelNode = SKLabelNode(text: "3")
     var startTime: NSDate?
-    var gameStarted: Bool = false
     var gameCounter: Int = 0
-    let taskList = Tasks(numberOfTasksRequested: Tasks.oneMinuteTimeIntervals.count)
+    
+    var gameStarted: Bool = false
     var taskCompleted: Bool = true
-    var crownWasRotated: Bool = false
+    var turnDetected: Bool = false
     var swipeDetected: Bool = false
     var tapDetected: Bool = false
     
+    // MARK: Constants
+    let taskList = Tasks(numberOfTasksRequested: Tasks.oneMinuteTimeIntervals.count)
+    
+    // MARK: Haptic functions wrapped in SKActions
     let playHapticClick = SKAction.customAction(withDuration: 0) { (node, timeInterval) in
         WKInterfaceDevice.current().play(.click)
     }
@@ -45,7 +50,7 @@ class GameScene: SKScene {
         
     }
     
-    // Label methods
+    // MARK: Label methods
     func countDownAnimation() {
     
         let waitOneSec = SKAction.wait(forDuration: 1)
@@ -85,8 +90,9 @@ class GameScene: SKScene {
         
     }
     
+    // MARK: Game methods
     func nextTask() {
-        crownWasRotated = false
+        turnDetected = false
         swipeDetected = false
         tapDetected = false
         if taskCompleted == false {
@@ -103,6 +109,16 @@ class GameScene: SKScene {
         }
     }
     
+    func taskIsCorrect() {
+        let grow = SKAction.scale(to: 1.2, duration: 0.25)
+        let shrink = SKAction.scale(to: 1.0, duration: 0.25)
+        let growAndShrink = SKAction.sequence([grow, shrink])
+        self.taskCompleted = true
+        self.label.text = "✅"
+        self.label.run(growAndShrink)
+        WKInterfaceDevice.current().play(.directionUp)
+    }
+    
     func gameOver() {
         let grow = SKAction.scale(to: 1.2, duration: 0.25)
         let shrink = SKAction.scale(to: 1.0, duration: 0.25)
@@ -113,60 +129,58 @@ class GameScene: SKScene {
         label.fontSize = 45
         gameStarted = false
         WKInterfaceDevice.current().play(.failure)
+        DataModel.setWinningStreak(points: 0)
+    }
+    
+    func winGame() {
+        print(taskList.tasks.count)
+        let grow = SKAction.scale(to: 1.2, duration: 0.25)
+        let shrink = SKAction.scale(to: 1.0, duration: 0.25)
+        let growAndShrink = SKAction.sequence([grow, shrink])
+        self.label.fontSize = 60
+        self.label.text = "You win! 🏆"
+        self.label.run(growAndShrink)
+        WKInterfaceDevice.current().play(.success)
+        gameStarted = false
+        DataModel.setWinningStreak(points: DataModel.getWinningStreak() + 1)
     }
     
     override func update(_ currentTime: TimeInterval) {
         if gameStarted == true {
             let timeSinceStart = startTime!.timeIntervalSinceNow.magnitude
             
+            // Compare the time the next sequence starts from the time since start.
             if timeSinceStart > Tasks.oneMinuteTimeIntervals[gameCounter] {
                 nextTask()
             }
             
             
-            // Game logic
+            // MARK: Game logic
+            // TODO: Make this based on enums and NOT the current text in the label.
             if self.label.text == "turn" {
                 if (swipeDetected == true || tapDetected == true) && taskCompleted == false {
                     gameOver()
                 }
-                if crownWasRotated == true {
-                    let grow = SKAction.scale(to: 1.2, duration: 0.25)
-                    let shrink = SKAction.scale(to: 1.0, duration: 0.25)
-                    let growAndShrink = SKAction.sequence([grow, shrink])
-                    self.taskCompleted = true
-                    self.label.text = "✅"
-                    self.label.run(growAndShrink)
-                    WKInterfaceDevice.current().play(.directionUp)
+                if turnDetected == true {
+                    taskIsCorrect()
                 }
             }
             
             if self.label.text == "swipe" {
-                if (tapDetected == true || crownWasRotated == true) && taskCompleted == false {
+                if (tapDetected == true || turnDetected == true) && taskCompleted == false {
                     gameOver()
                 }
                 if swipeDetected == true {
-                    let grow = SKAction.scale(to: 1.2, duration: 0.25)
-                    let shrink = SKAction.scale(to: 1.0, duration: 0.25)
-                    let growAndShrink = SKAction.sequence([grow, shrink])
-                    self.taskCompleted = true
-                    self.label.text = "✅"
-                    self.label.run(growAndShrink)
-                    WKInterfaceDevice.current().play(.directionUp)
+                    taskIsCorrect()
                 }
             }
             
             if self.label.text == "tap" {
-                if (swipeDetected == true || crownWasRotated == true) && taskCompleted == false {
+                if (swipeDetected == true || turnDetected == true) && taskCompleted == false {
                     gameOver()
                 }
                 if tapDetected == true {
-                    let grow = SKAction.scale(to: 1.2, duration: 0.25)
-                    let shrink = SKAction.scale(to: 1.0, duration: 0.25)
-                    let growAndShrink = SKAction.sequence([grow, shrink])
-                    self.taskCompleted = true
-                    self.label.text = "✅"
-                    self.label.run(growAndShrink)
-                    WKInterfaceDevice.current().play(.directionUp)
+                    taskIsCorrect()
                 }
             }
             
@@ -174,16 +188,9 @@ class GameScene: SKScene {
             
         }
         
+        // If the user has reached the last item in the task list, they win!
         if gameCounter == taskList.tasks.count - 1 && gameStarted == true {
-            print(taskList.tasks.count)
-            let grow = SKAction.scale(to: 1.2, duration: 0.25)
-            let shrink = SKAction.scale(to: 1.0, duration: 0.25)
-            let growAndShrink = SKAction.sequence([grow, shrink])
-            self.label.fontSize = 60
-            self.label.text = "You win! 🏆"
-            self.label.run(growAndShrink)
-            WKInterfaceDevice.current().play(.success)
-            gameStarted = false
+            winGame()
         }
     }
     

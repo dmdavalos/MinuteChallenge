@@ -20,7 +20,11 @@
                                 <segue destination="AgC-eL-Hgc" kind="push" id="8pJ-0W-yYs"/>
                             </connections>
                         </button>
+                        <label alignment="center" verticalAlignment="bottom" text="Win Streak: 255" id="agC-1t-dHa"/>
                     </items>
+                    <connections>
+                        <outlet property="winStreakLAbel" destination="agC-1t-dHa" id="heM-gH-716"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="-274" y="31"/>

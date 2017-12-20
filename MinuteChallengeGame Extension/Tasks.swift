@@ -8,10 +8,15 @@
 
 import Foundation
 
+enum taskType {
+    case tap, swipe, turn
+}
+
 class Tasks {
     
     var tasks: [String] = []
     
+    // TODO: Determine time segments programatically
     static let oneMinuteTimeIntervals: [Double] = [     0, 3.5, 7.0, 10.5,
                                                      13.0, 15.5, 18.0, 20.5, 23.0, 25.5, 28.0, 30.5,
                                                      32.5, 34.5, 36.5, 38.5, 40.5, 42.5, 44.5,

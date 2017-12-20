@@ -10,5 +10,12 @@ import UIKit
 import WatchKit
 
 class TitleIC: WKInterfaceController {
-
+    
+    @IBOutlet var winStreakLAbel: WKInterfaceLabel!
+    
+    override func willActivate() {
+        // Set the winning streak label
+        print("Winning streak is: \(DataModel.getWinningStreak())")
+        winStreakLAbel.setText("Win Streak: \(DataModel.getWinningStreak())")
+    }
 }

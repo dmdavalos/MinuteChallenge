@@ -30,6 +30,8 @@ class GameIC: WKInterfaceController, WKCrownDelegate {
         
     }
     
+    // MARK: Swipe detection methods
+    
     func swipeDetected() {
         print("Swipe detected!")
         scene.swipeDetected = true
@@ -54,8 +56,10 @@ class GameIC: WKInterfaceController, WKCrownDelegate {
     
     func crownDidRotate(_ crownSequencer: WKCrownSequencer?, rotationalDelta: Double) {
         print("Crown rotation detected! \(rotationalDelta)")
-        scene.crownWasRotated = true
+        scene.turnDetected = true
     }
+    
+    // MARK: willActivate method
     
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
