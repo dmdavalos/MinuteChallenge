@@ -1,4 +1,5 @@
 # MinuteChallenge
+![License](https://img.shields.io/cocoapods/l/Whisper.svg?style=flat)
 ![Platform](https://img.shields.io/badge/platform-watchos-blue.svg)
 ![Swift](https://img.shields.io/badge/%20in-swift%204.0-orange.svg)
 
