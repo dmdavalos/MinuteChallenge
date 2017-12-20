@@ -11,7 +11,7 @@ Download this game on the [App Store](https://itunes.apple.com/us/app/minute-cha
 
 ## Roadmap
 * Create an "Endless" mode
-* Set up leaderboards so players could compete for the highest score
+* Set up a leaderboard so players could compete for the highest score
 * Fancier animations
 
 ## License
