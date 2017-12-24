@@ -21,12 +21,13 @@ class DataModel {
         
         if dataExists() {
             do {
-                let winningStreakData = try! Data(contentsOf: winningStreakURL)
-                winningStreakArray = try! Array(winningStreakData)
+                let winningStreakData = try Data(contentsOf: winningStreakURL)
+                winningStreakArray = Array(winningStreakData)
                 result = Int(winningStreakArray![0])
             }
             catch {
                 print("Error retrieving data!")
+                
             }
             return result!
         }
@@ -37,39 +38,37 @@ class DataModel {
     }
     
     // MARK: initalizeData
-    static func initalizeData() -> Bool {
+    static func initalizeData() {
         do {
             winningStreakArray = [0]
-            let winningStreakData = try! Data(winningStreakArray!)
-            try! winningStreakData.write(to: winningStreakURL)
+            let winningStreakData = Data(winningStreakArray!)
+            try winningStreakData.write(to: winningStreakURL)
             print("Save data initalized!")
-            return true
+        }
+        catch {
+            print("Error initalizing save data!")
         }
     }
     
     // MARK: setWinningStreak
-    static func setWinningStreak(points: Int) -> Bool {
+    static func setWinningStreak(points: Int) {
         if points < 0 || points > 255 { // Need to make sure that it's an 8-bit integer
             print("Error: Invalid score. Must be between 0 and 255")
-            return false
         }
         else {
-            var result: Bool?
             if dataExists() {
                 do {
                     winningStreakArray![0] = UInt8(points)
                     let winningStreakData = Data(winningStreakArray!)
                     try winningStreakData.write(to: winningStreakURL)
-                    result = true
+
                 }
                 catch {
                     print("Error writing to disk!")
-                    result = false
                 }
-                return result!
+
             }
             else {
-                return false
             }
         }
     }
@@ -78,7 +77,7 @@ class DataModel {
     static func dataExists() -> Bool {
         do {
             let winningStreakData = try Data(contentsOf: winningStreakURL)
-            winningStreakArray = try Array(winningStreakData)
+            winningStreakArray = Array(winningStreakData)
             return true
         }
         catch {

@@ -67,4 +67,7 @@ class GameIC: WKInterfaceController, WKCrownDelegate {
         crownSequencer.focus()
         crownSequencer.delegate = self
     }
+    
+    // MARK: Pop method
+    // This is used to return to the title screen when the player loses.
 }

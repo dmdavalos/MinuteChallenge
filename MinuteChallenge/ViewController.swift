@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        instructionsLabel.text = "Please start the game\nfrom your Apple Watch. ⌚️"
+        instructionsLabel.text = "Please start the game\nfrom your Apple Watch."
     }
 }
 

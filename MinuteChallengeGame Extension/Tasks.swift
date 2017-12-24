@@ -14,7 +14,7 @@ enum taskType {
 
 class Tasks {
     
-    var tasks: [String] = []
+    var tasks: [taskType] = []
     
     // TODO: Determine time segments programatically
     static let oneMinuteTimeIntervals: [Double] = [     0, 3.5, 7.0, 10.5,
@@ -32,13 +32,13 @@ class Tasks {
             let selection = arc4random_uniform(3)
             switch selection {
             case 0:
-                self.tasks.append("swipe")
+                self.tasks.append(.swipe)
             case 1:
-                self.tasks.append("tap")
+                self.tasks.append(.tap)
             case 2:
-                self.tasks.append("turn")
+                self.tasks.append(.turn)
             default:
-                self.tasks.append("ERROR")
+                print("Error assigning task in taskList!")
             }
         }
     }

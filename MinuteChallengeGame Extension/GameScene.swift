@@ -43,8 +43,7 @@ class GameScene: SKScene {
         self.backgroundColor = UIColor.black
         self.label.fontSize = 72
         self.addChild(label)
-        
-        print(taskList.tasks)
+
         
         countDownAnimation()
         
@@ -98,13 +97,25 @@ class GameScene: SKScene {
         if taskCompleted == false {
             gameOver()
         }
-        else {
-            taskCompleted = false
-            self.label.text = taskList.tasks[gameCounter]
-            WKInterfaceDevice.current().play(.click)
-            if gameCounter != Tasks.oneMinuteTimeIntervals.count - 1 {
-                gameCounter += 1
-                print("gameCounter: " + gameCounter.description)
+        else if taskCompleted == true {
+            gameCounter += 1
+            print("gameCounter: " + gameCounter.description)
+            
+            // See if we've won yet. If not, load the next task.
+            if gameCounter == taskList.tasks.count {
+                winGame()
+            }
+            else {
+                taskCompleted = false
+                switch taskList.tasks[gameCounter] {
+                case .swipe:
+                    self.label.text = "Swipe!"
+                case .tap:
+                    self.label.text = "Tap!"
+                case .turn:
+                    self.label.text = "Turn!"
+                }
+                WKInterfaceDevice.current().play(.click)
             }
         }
     }
@@ -113,9 +124,10 @@ class GameScene: SKScene {
         let grow = SKAction.scale(to: 1.2, duration: 0.25)
         let shrink = SKAction.scale(to: 1.0, duration: 0.25)
         let growAndShrink = SKAction.sequence([grow, shrink])
+        
         self.taskCompleted = true
-        self.label.text = "✅"
         self.label.run(growAndShrink)
+        self.label.text = "OK!"
         WKInterfaceDevice.current().play(.directionUp)
     }
     
@@ -138,7 +150,7 @@ class GameScene: SKScene {
         let shrink = SKAction.scale(to: 1.0, duration: 0.25)
         let growAndShrink = SKAction.sequence([grow, shrink])
         self.label.fontSize = 60
-        self.label.text = "You win! 🏆"
+        self.label.text = "You win!"
         self.label.run(growAndShrink)
         WKInterfaceDevice.current().play(.success)
         gameStarted = false
@@ -156,34 +168,29 @@ class GameScene: SKScene {
             
             
             // MARK: Game logic
-            // TODO: Make this based on enums and NOT the current text in the label.
-            if self.label.text == "turn" {
-                if (swipeDetected == true || tapDetected == true) && taskCompleted == false {
-                    gameOver()
-                }
-                if turnDetected == true {
-                    taskIsCorrect()
-                }
-            }
-            
-            if self.label.text == "swipe" {
-                if (tapDetected == true || turnDetected == true) && taskCompleted == false {
-                    gameOver()
-                }
-                if swipeDetected == true {
-                    taskIsCorrect()
-                }
-            }
-            
-            if self.label.text == "tap" {
+            switch taskList.tasks[gameCounter] {
+            case .tap:
                 if (swipeDetected == true || turnDetected == true) && taskCompleted == false {
                     gameOver()
                 }
-                if tapDetected == true {
+                else if tapDetected == true && taskCompleted == false {
+                    taskIsCorrect()
+                }
+            case .swipe:
+                if (tapDetected == true || turnDetected == true) && taskCompleted == false {
+                    gameOver()
+                }
+                else if swipeDetected == true && taskCompleted == false {
+                    taskIsCorrect()
+                }
+            case .turn:
+                if (tapDetected == true || swipeDetected == true) && taskCompleted == false {
+                    gameOver()
+                }
+                else if turnDetected == true && taskCompleted == false {
                     taskIsCorrect()
                 }
             }
-            
             
             
         }
