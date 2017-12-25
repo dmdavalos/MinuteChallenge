@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		65A0F79D1FEF90C500254208 /* FileManagerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A0F79B1FEF90C500254208 /* FileManagerExtension.swift */; };
-		65A0F79E1FEF90C500254208 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A0F79C1FEF90C500254208 /* Model.swift */; };
-		65A0F79F1FEF90EA00254208 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A0F79C1FEF90C500254208 /* Model.swift */; };
-		65A0F7A01FEF90EC00254208 /* FileManagerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A0F79B1FEF90C500254208 /* FileManagerExtension.swift */; };
+		659601421FF0DE0A00D1E8E6 /* FileManagerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659601401FF0DE0A00D1E8E6 /* FileManagerExtension.swift */; };
+		659601431FF0DE0A00D1E8E6 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659601411FF0DE0A00D1E8E6 /* Model.swift */; };
+		659601441FF0DE1200D1E8E6 /* FileManagerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659601401FF0DE0A00D1E8E6 /* FileManagerExtension.swift */; };
+		659601451FF0DE1500D1E8E6 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659601411FF0DE0A00D1E8E6 /* Model.swift */; };
 		65F8CD671FD620B10069F214 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F8CD661FD620B10069F214 /* AppDelegate.swift */; };
 		65F8CD691FD620B10069F214 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F8CD681FD620B10069F214 /* ViewController.swift */; };
 		65F8CD6C1FD620B10069F214 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65F8CD6A1FD620B10069F214 /* Main.storyboard */; };
@@ -71,8 +71,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		65A0F79B1FEF90C500254208 /* FileManagerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileManagerExtension.swift; path = DataModel/FileManagerExtension.swift; sourceTree = SOURCE_ROOT; };
-		65A0F79C1FEF90C500254208 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Model.swift; path = DataModel/Model.swift; sourceTree = SOURCE_ROOT; };
+		659601401FF0DE0A00D1E8E6 /* FileManagerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManagerExtension.swift; sourceTree = "<group>"; };
+		659601411FF0DE0A00D1E8E6 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		65F8CD631FD620B10069F214 /* MinuteChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MinuteChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65F8CD661FD620B10069F214 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65F8CD681FD620B10069F214 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -119,20 +119,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		65A0F79A1FEF90B000254208 /* DataModel */ = {
+		6596013F1FF0DDD600D1E8E6 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
-				65A0F79B1FEF90C500254208 /* FileManagerExtension.swift */,
-				65A0F79C1FEF90C500254208 /* Model.swift */,
+				659601401FF0DE0A00D1E8E6 /* FileManagerExtension.swift */,
+				659601411FF0DE0A00D1E8E6 /* Model.swift */,
 			);
-			name = DataModel;
-			path = "New Group";
+			path = DataModel;
 			sourceTree = "<group>";
 		};
 		65F8CD5A1FD620B10069F214 = {
 			isa = PBXGroup;
 			children = (
-				65A0F79A1FEF90B000254208 /* DataModel */,
+				6596013F1FF0DDD600D1E8E6 /* DataModel */,
 				65F8CD651FD620B10069F214 /* MinuteChallenge */,
 				65F8CD7E1FD620C30069F214 /* MinuteChallengeGame */,
 				65F8CD8D1FD620C40069F214 /* MinuteChallengeGame Extension */,
@@ -324,9 +323,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				65F8CD691FD620B10069F214 /* ViewController.swift in Sources */,
-				65A0F79D1FEF90C500254208 /* FileManagerExtension.swift in Sources */,
+				659601421FF0DE0A00D1E8E6 /* FileManagerExtension.swift in Sources */,
 				65F8CD671FD620B10069F214 /* AppDelegate.swift in Sources */,
-				65A0F79E1FEF90C500254208 /* Model.swift in Sources */,
+				659601431FF0DE0A00D1E8E6 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,11 +333,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				659601451FF0DE1500D1E8E6 /* Model.swift in Sources */,
 				65F8CDA91FD64A830069F214 /* Tasks.swift in Sources */,
+				659601441FF0DE1200D1E8E6 /* FileManagerExtension.swift in Sources */,
 				65F8CDA71FD64A7D0069F214 /* GameIC.swift in Sources */,
-				65A0F7A01FEF90EC00254208 /* FileManagerExtension.swift in Sources */,
 				65F8CDAF1FD64AF90069F214 /* TitleIC.swift in Sources */,
-				65A0F79F1FEF90EA00254208 /* Model.swift in Sources */,
 				65F8CDA51FD64A770069F214 /* GameScene.swift in Sources */,
 				65F8CD951FD620C40069F214 /* ExtensionDelegate.swift in Sources */,
 			);
