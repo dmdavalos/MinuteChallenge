@@ -9,6 +9,10 @@
 import SpriteKit
 import WatchKit
 
+protocol MinuteChallengeDelegate {
+    func returnToTitle()
+}
+
 class GameScene: SKScene {
     
     // MARK: Variables
@@ -21,6 +25,9 @@ class GameScene: SKScene {
     var turnDetected: Bool = false
     var swipeDetected: Bool = false
     var tapDetected: Bool = false
+    
+    // Delegate
+    var minuteChallengeDelegate: MinuteChallengeDelegate?
     
     // MARK: Constants
     let taskList = Tasks(numberOfTasksRequested: Tasks.oneMinuteTimeIntervals.count)
@@ -43,10 +50,8 @@ class GameScene: SKScene {
         self.backgroundColor = UIColor.black
         self.label.fontSize = 72
         self.addChild(label)
-
         
         countDownAnimation()
-        
     }
     
     // MARK: Label methods
@@ -142,6 +147,16 @@ class GameScene: SKScene {
         gameStarted = false
         WKInterfaceDevice.current().play(.failure)
         DataModel.setWinningStreak(points: 0)
+        
+        // SKActions that'll return the user to the title screen after 3 seconds.
+        let waitThreeSeconds = SKAction.wait(forDuration: 3)
+        let activateReturnToTitle = SKAction.customAction(withDuration: 0) { (node, timeInterval) in
+            self.minuteChallengeDelegate?.returnToTitle()
+        }
+        let waitThenReturn = SKAction.sequence([waitThreeSeconds, activateReturnToTitle])
+        
+        self.label.run(waitThenReturn)
+        
     }
     
     func winGame() {
@@ -193,11 +208,6 @@ class GameScene: SKScene {
             }
             
             
-        }
-        
-        // If the user has reached the last item in the task list, they win!
-        if gameCounter == taskList.tasks.count - 1 && gameStarted == true {
-            winGame()
         }
     }
     

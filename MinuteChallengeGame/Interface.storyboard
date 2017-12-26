@@ -17,22 +17,22 @@
                         <imageView height="109" alignment="left" image="MinuteChallengeLogo-Black" contentMode="scaleAspectFit" id="cqy-Od-KsZ"/>
                         <button width="1" alignment="left" verticalAlignment="center" title="Play" id="hPN-6V-27h">
                             <connections>
-                                <segue destination="AgC-eL-Hgc" kind="push" id="8pJ-0W-yYs"/>
+                                <action selector="playButtonPressed" destination="0rr-x4-M1g" id="G86-k0-Y2Y"/>
                             </connections>
                         </button>
                         <label alignment="center" verticalAlignment="bottom" text="Win Streak: 255" id="agC-1t-dHa"/>
                     </items>
                     <connections>
-                        <outlet property="winStreakLAbel" destination="agC-1t-dHa" id="heM-gH-716"/>
+                        <outlet property="winStreakLabel" destination="agC-1t-dHa" id="heM-gH-716"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="-274" y="31"/>
+            <point key="canvasLocation" x="-274" y="35"/>
         </scene>
         <!--Back-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller title="Back" id="AgC-eL-Hgc" customClass="GameIC" customModule="MinuteChallengeGame" customModuleProvider="target">
+                <controller identifier="GameScene" title="Back" fullScreen="YES" id="AgC-eL-Hgc" customClass="GameIC" customModule="MinuteChallengeGame" customModuleProvider="target">
                     <items>
                         <spriteKitScene alignment="left" id="ARY-87-yzO">
                             <gestureRecognizers>

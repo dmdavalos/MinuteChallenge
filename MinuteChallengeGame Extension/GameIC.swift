@@ -9,7 +9,7 @@
 import WatchKit
 import Foundation
 
-class GameIC: WKInterfaceController, WKCrownDelegate {
+class GameIC: WKInterfaceController, WKCrownDelegate, MinuteChallengeDelegate {
 
     @IBOutlet var skInterface: WKInterfaceSKScene!
     
@@ -27,6 +27,9 @@ class GameIC: WKInterfaceController, WKCrownDelegate {
         scene.scaleMode = .aspectFill
         
         self.skInterface.presentScene(scene)
+        
+        // Set this IC as a delegate of the SpriteKit scene.
+        scene.minuteChallengeDelegate = self
         
     }
     
@@ -68,6 +71,9 @@ class GameIC: WKInterfaceController, WKCrownDelegate {
         crownSequencer.delegate = self
     }
     
-    // MARK: Pop method
-    // This is used to return to the title screen when the player loses.
+    // MARK: Dismiss method
+    func returnToTitle() {
+        print("Signal recieved! Attempting to return to title screen.")
+        self.dismiss()
+    }
 }
