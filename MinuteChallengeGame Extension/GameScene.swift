@@ -107,18 +107,18 @@ class GameScene: SKScene {
             print("gameCounter: " + gameCounter.description)
             
             // See if we've won yet. If not, load the next task.
-            if gameCounter == taskList.tasks.count {
+            if gameCounter == taskList.tasks.count - 1 {
                 winGame()
             }
             else {
                 taskCompleted = false
                 switch taskList.tasks[gameCounter] {
                 case .swipe:
-                    self.label.text = "Swipe!"
+                    self.label.text = "Swipe"
                 case .tap:
-                    self.label.text = "Tap!"
+                    self.label.text = "Tap"
                 case .turn:
-                    self.label.text = "Turn!"
+                    self.label.text = "Turn"
                 }
                 WKInterfaceDevice.current().play(.click)
             }
@@ -136,6 +136,17 @@ class GameScene: SKScene {
         WKInterfaceDevice.current().play(.directionUp)
     }
     
+    func returnToTitle() {
+        // SKActions that'll return the user to the title screen after 3 seconds.
+        let waitThreeSeconds = SKAction.wait(forDuration: 3)
+        let activateReturnToTitle = SKAction.customAction(withDuration: 0) { (node, timeInterval) in
+            self.minuteChallengeDelegate?.returnToTitle()
+        }
+        let waitThenReturn = SKAction.sequence([waitThreeSeconds, activateReturnToTitle])
+        
+        self.label.run(waitThenReturn)
+    }
+    
     func gameOver() {
         let grow = SKAction.scale(to: 1.2, duration: 0.25)
         let shrink = SKAction.scale(to: 1.0, duration: 0.25)
@@ -148,14 +159,16 @@ class GameScene: SKScene {
         WKInterfaceDevice.current().play(.failure)
         DataModel.setWinningStreak(points: 0)
         
-        // SKActions that'll return the user to the title screen after 3 seconds.
-        let waitThreeSeconds = SKAction.wait(forDuration: 3)
-        let activateReturnToTitle = SKAction.customAction(withDuration: 0) { (node, timeInterval) in
-            self.minuteChallengeDelegate?.returnToTitle()
-        }
-        let waitThenReturn = SKAction.sequence([waitThreeSeconds, activateReturnToTitle])
+        returnToTitle()
         
-        self.label.run(waitThenReturn)
+        // SKActions that'll return the user to the title screen after 3 seconds.
+//        let waitThreeSeconds = SKAction.wait(forDuration: 3)
+//        let activateReturnToTitle = SKAction.customAction(withDuration: 0) { (node, timeInterval) in
+//            self.minuteChallengeDelegate?.returnToTitle()
+//        }
+//        let waitThenReturn = SKAction.sequence([waitThreeSeconds, activateReturnToTitle])
+//
+//        self.label.run(waitThenReturn)
         
     }
     
@@ -170,6 +183,7 @@ class GameScene: SKScene {
         WKInterfaceDevice.current().play(.success)
         gameStarted = false
         DataModel.setWinningStreak(points: DataModel.getWinningStreak() + 1)
+        returnToTitle()
     }
     
     override func update(_ currentTime: TimeInterval) {

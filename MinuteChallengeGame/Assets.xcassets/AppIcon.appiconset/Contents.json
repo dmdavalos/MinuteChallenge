@@ -63,9 +63,8 @@
       "subtype" : "42mm"
     },
     {
-      "size" : "1024x1024",
       "idiom" : "watch-marketing",
-      "filename" : "iTunesArtwork@2x.png",
+      "size" : "1024x1024",
       "scale" : "1x"
     }
   ],

@@ -14,7 +14,7 @@
             <objects>
                 <controller id="0rr-x4-M1g" customClass="TitleIC" customModule="MinuteChallengeGame" customModuleProvider="target">
                     <items>
-                        <imageView height="109" alignment="left" image="MinuteChallengeLogo-Black" contentMode="scaleAspectFit" id="cqy-Od-KsZ"/>
+                        <imageView height="109" alignment="left" image="MinuteChallengeLogo-Black2" contentMode="scaleAspectFit" id="cqy-Od-KsZ"/>
                         <button width="1" alignment="left" verticalAlignment="center" title="Play" id="hPN-6V-27h">
                             <connections>
                                 <action selector="playButtonPressed" destination="0rr-x4-M1g" id="G86-k0-Y2Y"/>
