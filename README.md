@@ -7,7 +7,9 @@
 :watch: A simple "Bop It" clone on watchOS written in Swift! :watch:
 
 ## Installation
-Download this game on the [App Store](https://itunes.apple.com/us/app/minute-challenge/id1323936073?ls=1&mt=8)!
+1. Clone the repository.
+2. Open the project with the MinuteChallenge.xcworkspace file.
+3. Build and run!
 
 ## Roadmap
 * Create an "Endless" mode
